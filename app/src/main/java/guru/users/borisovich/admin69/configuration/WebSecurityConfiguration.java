@@ -1,6 +1,6 @@
-package org.clover.admin.configuration;
+package guru.users.borisovich.admin69.configuration;
 
-import org.clover.admin.property.WebSecurityProperties;
+import guru.users.borisovich.admin69.property.WebSecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

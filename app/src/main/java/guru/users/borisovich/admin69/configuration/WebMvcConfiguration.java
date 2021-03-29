@@ -1,6 +1,6 @@
-package org.clover.admin.configuration;
+package guru.users.borisovich.admin69.configuration;
 
-import org.clover.admin.property.ApplicationProperties;
+import guru.users.borisovich.admin69.property.ApplicationProperties;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;

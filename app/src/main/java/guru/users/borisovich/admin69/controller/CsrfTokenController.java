@@ -1,4 +1,4 @@
-package org.clover.admin.controller;
+package guru.users.borisovich.admin69.controller;
 
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;

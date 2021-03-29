@@ -1,4 +1,4 @@
-package org.clover.admin;
+package guru.users.borisovich.admin69;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

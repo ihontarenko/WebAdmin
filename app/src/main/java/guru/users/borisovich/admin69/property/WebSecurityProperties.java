@@ -1,4 +1,4 @@
-package org.clover.admin.property;
+package guru.users.borisovich.admin69.property;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
