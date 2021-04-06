@@ -1,6 +1,6 @@
-package guru.users.borisovich.admin69.configuration;
+package guru.users.borisovich.configuration;
 
-import guru.users.borisovich.admin69.property.ApplicationProperties;
+import guru.users.borisovich.property.ApplicationProperties;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;

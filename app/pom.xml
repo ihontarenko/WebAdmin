@@ -4,20 +4,24 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.clover.admin</groupId>
+        <groupId>guru.users.borisovich</groupId>
         <version>1.0.0-RC</version>
         <artifactId>root</artifactId>
+        <relativePath>..</relativePath>
     </parent>
 
-    <name>CloverAdmin - Application</name>
+    <properties>
+        <start-class>guru.users.borisovich.AdminApplication</start-class>
+    </properties>
+
+    <name>WebAdmin - Application</name>
     <artifactId>app</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0-RC</version>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.clover.admin</groupId>
+                <groupId>guru.users.borisovich</groupId>
                 <artifactId>bom</artifactId>
                 <version>1.0.0-RC</version>
                 <type>pom</type>
@@ -51,11 +55,26 @@
     </dependencies>
 
     <build>
-        <finalName>BUILD</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>${start-class}</mainClass>
+                    <jvmArguments>
+                        --enable-preview
+                    </jvmArguments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <release>16</release>
+                    <compilerArgs>
+                        --enable-preview
+                    </compilerArgs>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -1,6 +1,6 @@
-package guru.users.borisovich.admin69.configuration;
+package guru.users.borisovich.configuration;
 
-import guru.users.borisovich.admin69.property.WebSecurityProperties;
+import guru.users.borisovich.property.WebSecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

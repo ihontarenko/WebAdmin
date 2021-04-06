@@ -1,4 +1,4 @@
-package guru.users.borisovich.admin69;
+package guru.users.borisovich;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

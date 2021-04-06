@@ -1,4 +1,4 @@
-package guru.users.borisovich.admin69.controller;
+package guru.users.borisovich.controller;
 
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
