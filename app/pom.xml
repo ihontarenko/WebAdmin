@@ -15,7 +15,7 @@
     </properties>
 
     <name>WebAdmin - Application</name>
-    <artifactId>app</artifactId>
+    <artifactId>web-admin</artifactId>
     <packaging>jar</packaging>
 
     <dependencyManagement>
@@ -42,6 +42,15 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
@@ -61,19 +70,14 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <mainClass>${start-class}</mainClass>
-                    <jvmArguments>
-                        --enable-preview
-                    </jvmArguments>
+                    <jvmArguments>--enable-preview</jvmArguments>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <release>16</release>
-                    <compilerArgs>
-                        --enable-preview
-                    </compilerArgs>
+                    <compilerArgs>--enable-preview</compilerArgs>
                 </configuration>
             </plugin>
         </plugins>

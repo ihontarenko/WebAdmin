@@ -19,8 +19,11 @@ import static org.springframework.security.crypto.factory.PasswordEncoderFactori
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private WebSecurityProperties properties;
+    private final WebSecurityProperties properties;
+
+    public WebSecurityConfiguration(WebSecurityProperties properties) {
+        this.properties = properties;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -32,7 +35,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 // global configuration
                 .authorizeRequests()
-                .antMatchers(format("%s/**", properties.getPathPrefix())).permitAll()
+                .antMatchers(format("%s/**", properties.getPathPrefix()), properties.getConsoleAntMatch()).permitAll()
                 .anyRequest().authenticated()
                 // log-in configuration
                 .and()
@@ -48,12 +51,19 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .tokenValiditySeconds(properties.getRememberMe().getValiditySeconds())
                 // log-out configuration
                 .and()
-                .logout().logoutUrl(properties.getLogoutPage()).deleteCookies(properties.getSessionCookie());
+                .logout().logoutUrl(properties.getLogoutPage()).deleteCookies(properties.getSessionCookie())
+                .and()
+                .headers().frameOptions().disable()
+                .and()
+                .csrf().ignoringAntMatchers(properties.getConsoleAntMatch())
+                .and()
+                .cors().disable();
     }
 
     @Override
     public void configure(final WebSecurity web) {
-        web.ignoring().antMatchers("/js/**", "/css/**", "/images/**");
+        web.ignoring().antMatchers("/js/**", "/css/**", "/images/**",
+                properties.getConsoleAntMatch());
     }
 
     @Override

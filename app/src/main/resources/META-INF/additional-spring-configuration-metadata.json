@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "pebble.cache",
+      "type": "java.lang.Boolean",
+      "description": "Turn On/Off Pebble Template Cache."
+    },
+    {
+      "name": "pebble.suffix",
+      "type": "java.lang.String",
+      "description": "Template Files extensions for Pebble Template Cache."
+    }
+  ] }

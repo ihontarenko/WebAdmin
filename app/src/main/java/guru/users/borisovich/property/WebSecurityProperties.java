@@ -8,6 +8,7 @@ import static java.lang.String.format;
 public class WebSecurityProperties {
 
     private String pathPrefix;
+    private String consoleAntMatch;
 
     private String loginProcessingUrl;
 
@@ -20,6 +21,14 @@ public class WebSecurityProperties {
     private String passwordParameter;
 
     private String sessionCookie;
+
+    public String getConsoleAntMatch() {
+        return consoleAntMatch;
+    }
+
+    public void setConsoleAntMatch(String consoleAntMatch) {
+        this.consoleAntMatch = consoleAntMatch;
+    }
 
     public String getPathPrefix() {
         return pathPrefix;
