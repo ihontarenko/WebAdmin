@@ -1,15 +1,22 @@
 package guru.users.borisovich.configuration;
 
 import guru.users.borisovich.property.WebSecurityProperties;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+
+import javax.annotation.PostConstruct;
+import javax.sql.DataSource;
 
 import static java.lang.String.format;
 import static org.springframework.security.crypto.factory.PasswordEncoderFactories.createDelegatingPasswordEncoder;
@@ -20,18 +27,40 @@ import static org.springframework.security.crypto.factory.PasswordEncoderFactori
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final WebSecurityProperties properties;
+    private final DataSource            dataSource;
 
-    public WebSecurityConfiguration(WebSecurityProperties properties) {
+    public WebSecurityConfiguration(WebSecurityProperties properties, DataSource dataSource) {
         this.properties = properties;
+        this.dataSource = dataSource;
+    }
+
+    @PostConstruct
+    private void initialize() {
+
+    }
+
+    @Bean
+    public UserDetailsService userDetailsManager() {
+        JdbcUserDetailsManager manager = new JdbcUserDetailsManager();
+
+        manager.setDataSource(dataSource);
+        manager.setRolePrefix("ROLE_");
+
+        return manager;
+    }
+
+    @Bean
+    public AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+
+        provider.setUserDetailsService(userDetailsService());
+        provider.setPasswordEncoder(createDelegatingPasswordEncoder());
+
+        return provider;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        System.out.println("security");
-        System.out.println(properties);
-        System.out.println("--------");
-
         http
                 // global configuration
                 .authorizeRequests()
@@ -66,9 +95,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 properties.getConsoleAntMatch());
     }
 
-    @Override
+    /*@Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         PasswordEncoder encoder = createDelegatingPasswordEncoder();
+
+        auth.authenticationProvider(authenticationProvider());
 
         auth
                 .inMemoryAuthentication()
@@ -81,6 +112,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .withUser("admin")
                 .password(encoder.encode("admin"))
                 .roles("USER", "ADMIN");
-    }
+    }*/
 
 }
