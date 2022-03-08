@@ -1,6 +1,6 @@
-package guru.users.borisovich.controller;
+package net.borisovich.controller;
 
-import guru.users.borisovich.property.WebSecurityProperties;
+import net.borisovich.property.WebSecurityProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

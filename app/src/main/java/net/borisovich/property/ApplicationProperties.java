@@ -1,4 +1,4 @@
-package guru.users.borisovich.property;
+package net.borisovich.property;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
