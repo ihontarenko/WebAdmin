@@ -1,0 +1,75 @@
+# Server
+server:
+  servlet:
+    session:
+      cookie.name: J_START_FORM_IO_SESSION_ID
+# Management
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,flyway
+# Endpoints
+endpoints:
+  shutdown:
+    enabled: true
+    sensitive: false
+# Spring
+spring:
+  banner:
+    location: classpath:banner.txt
+  config:
+    import:
+      - classpath:db/data-source.properties
+      - classpath:db/spring-jpa-hibernate.properties
+      - classpath:db/flyway.properties
+      - classpath:db/h2.properties
+  flyway:
+    enabled: true
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: e84033c9b98706b5ab7c
+            clientSecret: 8e550eb028c98040a8be796a7492c135cdaccf8a
+          google:
+            clientId: 809685880440-4idg7dtjejltuqp6ddtf0mvcrjscnr50.apps.googleusercontent.com
+            clientSecret: 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
+# Application
+application:
+    title: StartForm
+    version: 1.0-beta
+    locale:
+      cookie-name: J_START_FORM_IO_LOCALE
+      cookie-max-age: 2592000
+# Pebble
+pebble:
+  suffix: .html
+  cache: false
+# Http Security
+http-security:
+  h2-console: /console/**
+  security-path: /security
+  permit-all:
+    - ${http-security.security-path}/**
+    - ${http-security.security-path}/oauth/**
+    - ${http-security.h2-console}
+  form-login:
+    processing-url: ${http-security.security-path}/processing
+    login: ${http-security.security-path}/login
+    logout: ${http-security.security-path}/logout
+    username: username
+    password: password
+  remember-me:
+    cookie-name: J_START_FORM_IO_WEB_SECURITY
+    parameter-name: remember-me
+    secret-key: ${ENV_REMEMBER_ME_SECRET_KEY:A69Spring!}
+    validity-seconds: 86400
+  session-cookie: ${server.servlet.session.cookie.name}
+  web-security:
+    permit-all:
+      - ${http-security.h2-console}
+      - "/js/**"
+      - "/css/**"
+      - "/images/**"

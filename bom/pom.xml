@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <name>WebAdmin - BOM</name>
-    <groupId>guru.users.borisovich</groupId>
+    <name>StartForm.io - BOM</name>
+    <groupId>io.startform</groupId>
     <artifactId>bom</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0-RC</version>
@@ -13,6 +13,7 @@
         <spring-boot.version>2.4.4</spring-boot.version>
         <pebble-starter.version>3.0.10</pebble-starter.version>
         <hikari-cp.version>4.0.3</hikari-cp.version>
+        <flyway-maven-plugin.version>8.5.2</flyway-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -39,5 +40,17 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.flywaydb</groupId>
+                    <artifactId>flyway-maven-plugin</artifactId>
+                    <version>${flyway-maven-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
 </project>

@@ -1,6 +1,6 @@
-package net.borisovich.controller;
+package io.startform.controller;
 
-import net.borisovich.property.WebSecurityProperties;
+import io.startform.property.HttpSecurityProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,9 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/security")
 public class AuthorizationController {
 
-    private final WebSecurityProperties properties;
+    private final HttpSecurityProperties properties;
 
-    public AuthorizationController(WebSecurityProperties properties) {
+    public AuthorizationController(HttpSecurityProperties properties) {
         this.properties = properties;
     }
 

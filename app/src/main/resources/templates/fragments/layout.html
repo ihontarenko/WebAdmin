@@ -6,10 +6,10 @@
 
         <title>title</title>
 
-        <link rel="stylesheet" href="/css/bootstrap.min.css" crossorigin="anonymous">
-        <link rel="stylesheet" href="/css/bootstrap-utilities.min.css" crossorigin="anonymous">
-        <link rel="stylesheet" href="/css/bootstrap-grid.min.css" crossorigin="anonymous">
-        <link rel="stylesheet" href="/css/bootstrap-reboot.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{asset('/css/bootstrap-utilities.min.css')}}" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{asset('/css/bootstrap-grid.min.css')}}" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{asset('/css/bootstrap-reboot.min.css')}}" crossorigin="anonymous">
         <!-- Extra CSS -->
         {% block css %}{% endblock %}
         <!-- END:Extra CSS -->
@@ -18,9 +18,9 @@
     </head>
     <body>
         {% block body %}{% endblock %}
-        <script src="/js/bootstrap.min.js" crossorigin="anonymous"></script>
-        <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="/js/bootstrap.esm.min.js" crossorigin="anonymous"></script>
+        <script src="{{asset('/js/bootstrap.min.js')}}" crossorigin="anonymous"></script>
+        <script src="{{asset('/js/bootstrap.bundle.min.js')}}" crossorigin="anonymous"></script>
+        <script src="{{asset('/js/bootstrap.esm.min.js')}}" crossorigin="anonymous"></script>
         <!-- Extra JS -->
         {% block js %}{% endblock %}
         <!-- END:Extra JS -->
